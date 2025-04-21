@@ -1,0 +1,31 @@
+import React, { useState } from 'react';
+import useEffectCall from '../hooks/useEffectCall.js';
+
+
+const Vans = () => {
+    const { data, loading, error } = useEffectCall('/api/vans');
+
+    if (loading) return <p>Loading vans...</p>;
+    if (error) return <p style={{ color: 'red' }}>Error: {error}</p>;
+
+    const vanElements = data.vans.map(van => (
+        <div key={van.id} className="van-tile">
+            <img src={van.imageUrl} />
+            <div className="van-info">
+                <h3>{van.name}</h3>
+                <p>${van.price}<span>/day</span></p>
+            </div>
+            <i className={`van-type ${van.type} selected`}>{van.type}</i>
+        </div>
+    ))
+
+    return (
+        <div className="van-list-container">
+        <h1>Explore our van options</h1>
+        <div className="van-list">
+            {vanElements}
+        </div>
+    </div>
+    )
+}
+export default Vans;
