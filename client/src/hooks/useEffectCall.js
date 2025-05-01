@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const useEffectCall = (api) => {
+const useEffectCall = (api, id) => {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -29,7 +29,7 @@ const useEffectCall = (api) => {
         )
 
         return () => { isMounted = false; }
-    }, [])
+    }, [id])
 
 
     return { data, loading, error };
