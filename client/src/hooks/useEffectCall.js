@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
-const useEffectCall = (api, id) => {
+const useEffectCall = (api, id = null) => {
 
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -16,7 +16,7 @@ const useEffectCall = (api, id) => {
             return res.json()
         }).then(data => {
             if (isMounted) {
-                console.log('internal data', data)
+
                 setData(data);
                 setLoading(false);
             }

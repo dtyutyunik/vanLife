@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import useEffectCall from "../hooks/useEffectCall.js";
+import useEffectCall from "../../hooks/useEffectCall.js";
 
 const VanDetails = () => {
 
@@ -13,7 +13,7 @@ const VanDetails = () => {
         if (data?.data?.vans) {
             setVan(data.data?.vans);
         }
-        console.log('data', data)
+
     }, [data])
 
 

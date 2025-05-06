@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useEffectCall from '../hooks/useEffectCall.js';
+import useEffectCall from '../../hooks/useEffectCall.js';
 import { Link } from 'react-router-dom';
 
 
