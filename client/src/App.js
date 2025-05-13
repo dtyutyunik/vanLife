@@ -15,6 +15,8 @@ import HostVanDetail from './pages/Host/HostVanDetail.jsx';
 import HostVanInfo from './pages/Host/HostVanInfo.jsx';
 import HostVanPricing from './pages/Host/HostVanPricing.jsx';
 import HostVanPhotos from './pages/Host/HostVanPhotos.jsx';
+import NotFound from './pages/NotFound.jsx';
+import Login from './pages/Login.jsx';
 
 function App() {
 
@@ -23,10 +25,12 @@ function App() {
       {/* These routes are relative routes as opposed to absolute routes, hence lack of a slash infront of it */}
       <Routes>
         <Route path="/" element={<Layout />}>
+
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="vans" element={<Vans />} />
           <Route path='vans/:id' element={<VanDetails />} />
+          <Route path='login' element={<Login />} />
 
           <Route path="host" element={<DashboardLayout />}>
             <Route index element={<Host />} />  {/* This is the default route for /host */}
@@ -41,7 +45,7 @@ function App() {
           </Route>
 
 
-
+          <Route path="*" element={<NotFound/>} />
         </Route>
       </Routes>
     </>

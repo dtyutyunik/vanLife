@@ -1,11 +1,13 @@
-import { useParams } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { useParams, Link, useLocation } from "react-router-dom";
+import React, { use, useEffect, useState } from "react";
 import useEffectCall from "../../hooks/useEffectCall.js";
 
 const VanDetails = () => {
 
     const [van, setVan] = useState(null);
     const params = useParams();
+    const location=useLocation();
+    console.log('location', location);
 
     const data = useEffectCall(`/api/vans/${params.id}`, params.id);
 
@@ -15,11 +17,17 @@ const VanDetails = () => {
         }
 
     }, [data])
-
-
+    
+    const search= location.state?.search || '';
+    const returnText=location.state?.type || 'all'
 
     return (
         <div className="van-detail-container">
+            <Link
+                to={`..${search}`}
+                relative="path"
+                className="back-button"
+            >&larr; <span>Back to {returnText} vans</span></Link>
             {van ? (
                 <div className="van-detail">
                     <img src={van.imageUrl} />
