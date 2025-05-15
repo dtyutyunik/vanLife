@@ -1,25 +1,50 @@
 import { useParams, Link, useLocation } from "react-router-dom";
-import React, { use, useEffect, useState } from "react";
-import useEffectCall from "../../hooks/useEffectCall.js";
+import React, { useEffect, useState } from "react";
+import { getVans } from "../../api.js";
+// import useEffectCall from "../../hooks/useEffectCall.js";
 
 const VanDetails = () => {
 
     const [van, setVan] = useState(null);
-    const params = useParams();
-    const location=useLocation();
-    console.log('location', location);
+    const { id } = useParams();
+    const location = useLocation();
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
 
-    const data = useEffectCall(`/api/vans/${params.id}`, params.id);
+    // const data = useEffectCall(`/api/vans/${params.id}`, params.id);
+
+    // useEffect(() => {
+    //     if (data?.data?.vans) {
+    //         setVan(data.data?.vans);
+    //     }
+
+    // }, [data])
 
     useEffect(() => {
-        if (data?.data?.vans) {
-            setVan(data.data?.vans);
+        async function loadVans() {
+            setLoading(true)
+            try {
+                const data = await getVans(id)
+                setVan(data)
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
         }
+        loadVans()
+    }, [id])
 
-    }, [data])
-    
-    const search= location.state?.search || '';
-    const returnText=location.state?.type || 'all'
+    if (loading) {
+        return <h1>Loading...</h1>
+    }
+
+    if (error) {
+        return <h1>There was an error: {error.message}</h1>
+    }
+
+    const search = location.state?.search || '';
+    const returnText = location.state?.type || 'all'
 
     return (
         <div className="van-detail-container">

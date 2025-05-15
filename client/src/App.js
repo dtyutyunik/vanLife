@@ -17,6 +17,7 @@ import HostVanPricing from './pages/Host/HostVanPricing.jsx';
 import HostVanPhotos from './pages/Host/HostVanPhotos.jsx';
 import NotFound from './pages/NotFound.jsx';
 import Login from './pages/Login.jsx';
+import AuthRequired from './components/AuthRequired.jsx';
 
 function App() {
 
@@ -32,20 +33,22 @@ function App() {
           <Route path='vans/:id' element={<VanDetails />} />
           <Route path='login' element={<Login />} />
 
-          <Route path="host" element={<DashboardLayout />}>
-            <Route index element={<Host />} />  {/* This is the default route for /host */}
-            <Route path="income" element={<Income />} />
-            <Route path="reviews" element={<Reviews />} />
-            <Route path="vans" element={<HostVans />} />
-            <Route path="vans/:id" element={<HostVanDetail />}>
-              <Route index element={<HostVanInfo />} />
-              <Route path="pricing" element={<HostVanPricing />} />
-              <Route path="Photos" element={<HostVanPhotos />} />
+          <Route element={<AuthRequired />}>
+            <Route path="host" element={<DashboardLayout />}>
+              <Route index element={<Host />} />  {/* This is the default route for /host */}
+              <Route path="income" element={<Income />} />
+              <Route path="reviews" element={<Reviews />} />
+              <Route path="vans" element={<HostVans />} />
+              <Route path="vans/:id" element={<HostVanDetail />}>
+                <Route index element={<HostVanInfo />} />
+                <Route path="pricing" element={<HostVanPricing />} />
+                <Route path="Photos" element={<HostVanPhotos />} />
+              </Route>
             </Route>
           </Route>
 
 
-          <Route path="*" element={<NotFound/>} />
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </>

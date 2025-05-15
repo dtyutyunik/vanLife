@@ -1,21 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import useEffectCall from "../../hooks/useEffectCall.js";
+import { getHostVans } from "../../api.js";
+// import useEffectCall from "../../hooks/useEffectCall.js";
 
 const HostVans = () => {
 
     const [vans, setVans] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const data = useEffectCall('/api/host/vans', '');
+    // const data = useEffectCall('/api/host/vans', '');
 
+
+    // useEffect(() => {
+
+    //     if (data?.data?.vans) {
+    //         setVans(data.data?.vans || []);
+    //     }
+
+    // }, [data])
 
     useEffect(() => {
-
-        if (data?.data?.vans) {
-            setVans(data.data?.vans || []);
+        async function loadVans() {
+            setLoading(true)
+            try {
+                const data = await getHostVans()
+                setVans(data)
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
         }
+        loadVans()
 
-    }, [data])
+    }, []);
+
 
     const hostVansEls = vans.map(van => (
         <Link
@@ -32,6 +52,14 @@ const HostVans = () => {
             </div>
         </Link>
     ))
+
+    if (loading) {
+        return <h1>Loading...</h1>
+    }
+
+    if (error) {
+        return <h1>There was an error: {error.message}</h1>
+    }
 
     return (
         <div className="host-vans-container">

@@ -5,26 +5,33 @@ import { getVans } from '../../api.js';
 
 
 const Vans = () => {
-    const { data, loading, error } = useEffectCall('/api/vans');
-
     const [searchParams, setSearchParams] = useSearchParams();
-    console.log('searchParams', searchParams.toString());
     const typeFilter = searchParams.get("type");
-    // const [vans, setVans] = useState([]);
 
-    // useEffect(()=>{
-    //     const loadVans=async ()=>{
-    //         const data = await getVans();
-    //         setVans(data)
-    //         console.log('data', data);
-    //     }
-    //     loadVans();
-    // },[])
+    const [vans, setVans] = useState([]);
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState(null)
+
+    useEffect(() => {
+        async function loadVans() {
+            setLoading(true)
+            try {
+                const data = await getVans()
+                setVans(data)
+            } catch (err) {
+                setError(err)
+            } finally {
+                setLoading(false)
+            }
+        }
+
+        loadVans()
+    }, [])
 
     if (loading) return <h1 aria-live="polite">Loading vans...</h1>;
     if (error) return <h1 aria-live="assertive" style={{ color: 'red' }}>Error: {error}</h1>;
 
-    const displayedVans = typeFilter ? data.vans.filter(van => van.type === typeFilter) : data.vans;
+    const displayedVans = typeFilter ? vans.filter(van => van.type === typeFilter) : vans;
 
     const vanElements = displayedVans.map(van => (
 

@@ -1,7 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { loginUser } from "../api";
 
 const Login = () => {
+
+    const [status, setStatus] = useState('idle')
+    const [error, setError] = useState(null)
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from || '/host';
 
     const [loginFormData, setLoginFormData] = useState({
         email: '',
@@ -19,20 +26,38 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(loginFormData)
+        setStatus('submitting');
+
+        loginUser(loginFormData).then((data) => {
+            localStorage.setItem('isLoggedIn', true)
+            navigate(from, {
+                replace: true
+            })
+            setError(null)
+        }).catch((err) => {
+
+            setError(err)
+        }).finally(() => {
+            setStatus('idle')
+        })
+
     }
 
     return (
         <div className="login-container">
+            {
+                location.state?.message &&
+                <h3 className="login-error">{location.state.message}</h3>
+            }
             <h1>Sign in to your account</h1>
-
+            {error?.message && <p className="login-error">{error.message}</p>}
             <form onSubmit={handleSubmit} className="login-form">
                 <input
                     name="email"
                     onChange={handleChange}
                     type="email"
                     placeholder="Email address"
-                    required
+                    // required
                     value={loginFormData.email}
                 />
                 <input
@@ -40,10 +65,10 @@ const Login = () => {
                     onChange={handleChange}
                     type="password"
                     placeholder="Password"
-                    required
+                    // required
                     value={loginFormData.password}
                 />
-                <button type="submit" className="login-button">Sign in</button>
+                <button type="submit" disabled={status === 'submitting'} className="login-button">Log in</button>
             </form>
 
         </div>
