@@ -47,7 +47,7 @@ const VanDetails = () => {
             >&larr; <span>Back to {returnText} vans</span></Link>
             {van ? (
                 <div className="van-detail">
-                    <img src={van.imageUrl} />
+                    <img src={van.imageUrl} alt="van image"/>
                     <i className={`van-type ${van.type} selected`}>{van.type}</i>
                     <h2>{van.name}</h2>
                     <p className="van-price"><span>${van.price}</span>/day</p>
