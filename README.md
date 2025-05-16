@@ -10,7 +10,7 @@ VanLife is a React-based web application designed for van enthusiasts to explore
    - Users can explore a variety of vans with filtering options based on categories like `Rugged`, `Luxury`, and `Simple`.
    - Each van displays its name, price, and category.
 
-   ![Van Listings](./client/src/assets/van-listings.png)
+   ![Van Listings](./client/public/screenshots/vans.png)
 
 ---
 
@@ -30,7 +30,7 @@ VanLife is a React-based web application designed for van enthusiasts to explore
    - Firebase Authentication is used to manage user login and secure access to protected routes.
    - Users must log in to access the host dashboard.
 
-   ![Login Page](./client/src/assets/login-page.png)
+   ![Login Page](./client/public/screenshots/login.png)
 
 ---
 
@@ -38,7 +38,7 @@ VanLife is a React-based web application designed for van enthusiasts to explore
    - Users can filter vans by categories (e.g., `Rugged`, `Luxury`, `Simple`) to find the perfect match.
    - A "clear" button resets the filters.
 
-   ![Filtering Vans](./client/src/assets/filtering-vans.png)
+   ![Filtering Vans](./client/public/screenshots/vanLife_filter.png)
 
 ---
 
@@ -96,11 +96,6 @@ VanLife is a React-based web application designed for van enthusiasts to explore
     │   │   └── index.js         # Entry point
     ├── [README.md](http://_vscodecontentref_/1)
     └── package.json
-## 📸 Screenshots
-       ![Login Page](./client/src/assets/login.png)
-       ![VanLife Filter](./client/src/assets/vanLife_filter.png)
-       ![Vans](./client/src/assets/vans.png)
-
 
 ## 🔒 Authentication
 This project uses Firebase Authentication to secure routes and manage user sessions. Protected routes ensure that only logged-in users can access sensitive areas like the host dashboard.
@@ -109,4 +104,3 @@ This project uses Firebase Authentication to secure routes and manage user sessi
 ## 🌐 Live Demo
 
 Check out the live demo of the project here: [VanLife Live Demo](https://vanlifemode.netlify.app/)
-5. 
