@@ -75,27 +75,29 @@ VanLife is a React-based web application designed for van enthusiasts to explore
    npm install
 
 3. Create a .env file in the client directory and add your Firebase configuration:
-    REACT_APP_FIREBASE_API_KEY=your-api-key
-    REACT_APP_FIREBASE_AUTH_DOMAIN=your-auth-domain
-    REACT_APP_FIREBASE_PROJECT_ID=your-project-id
-    REACT_APP_FIREBASE_STORAGE_BUCKET=your-storage-bucket
-    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
-    REACT_APP_FIREBASE_APP_ID=your-app-id
+REACT_APP_FIREBASE_API_KEY=your-api-key
+REACT_APP_FIREBASE_AUTH_DOMAIN=your-auth-domain
+REACT_APP_FIREBASE_PROJECT_ID=your-project-id
+REACT_APP_FIREBASE_STORAGE_BUCKET=your-storage-bucket
+REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your-messaging-sender-id
+REACT_APP_FIREBASE_APP_ID=your-app-id
+
 4. Start the development server:
     npm start
 5. Open the app in your browser at http://localhost:3000.
-        vanLife/
-    ├── client/
-    │   ├── public/
-    │   ├── src/
-    │   │   ├── assets/          # Images and static assets
-    │   │   ├── components/      # Reusable components
-    │   │   ├── pages/           # Page components
-    │   │   ├── firebaseSetup/   # Firebase configuration
-    │   │   ├── App.js           # Main app component
-    │   │   └── index.js         # Entry point
-    ├── [README.md](http://_vscodecontentref_/1)
-    └── package.json
+vanLife/
+├── client/
+│   ├── public/
+│   │   └── screenshots/         # Moved images for README previews
+│   ├── src/
+│   │   ├── assets/              # Other static assets
+│   │   ├── components/          # Reusable components
+│   │   ├── pages/               # Route-level components
+│   │   ├── firebaseSetup/       # Firebase config
+│   │   ├── App.js               # Root component
+│   │   └── index.js             # Entry point
+├── README.md
+└── package.json
 
 ## 🔒 Authentication
 This project uses Firebase Authentication to secure routes and manage user sessions. Protected routes ensure that only logged-in users can access sensitive areas like the host dashboard.
