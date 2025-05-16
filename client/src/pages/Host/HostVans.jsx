@@ -1,24 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { getHostVans } from "../../api.js";
-// import useEffectCall from "../../hooks/useEffectCall.js";
 
 const HostVans = () => {
 
     const [vans, setVans] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
-    // const data = useEffectCall('/api/host/vans', '');
-
-
-    // useEffect(() => {
-
-    //     if (data?.data?.vans) {
-    //         setVans(data.data?.vans || []);
-    //     }
-
-    // }, [data])
 
     useEffect(() => {
         async function loadVans() {
@@ -44,7 +32,7 @@ const HostVans = () => {
             className="host-van-link-wrapper"
         >
             <div className="host-van-single" key={van.id}>
-                <img src={van.imageUrl} alt={`Photo of ${van.name}`} />
+                <img src={van.imageUrl} alt={`visual of ${van.name}`} />
                 <div className="host-van-info">
                     <h3>{van.name}</h3>
                     <p>${van.price}/day</p>

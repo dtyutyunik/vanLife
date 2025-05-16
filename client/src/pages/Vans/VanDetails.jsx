@@ -1,7 +1,7 @@
 import { useParams, Link, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { getVans } from "../../api.js";
-// import useEffectCall from "../../hooks/useEffectCall.js";
+import { getVan } from "../../api.js";
+
 
 const VanDetails = () => {
 
@@ -11,20 +11,12 @@ const VanDetails = () => {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
 
-    // const data = useEffectCall(`/api/vans/${params.id}`, params.id);
-
-    // useEffect(() => {
-    //     if (data?.data?.vans) {
-    //         setVan(data.data?.vans);
-    //     }
-
-    // }, [data])
 
     useEffect(() => {
         async function loadVans() {
             setLoading(true)
             try {
-                const data = await getVans(id)
+                const data = await getVan(id)
                 setVan(data)
             } catch (err) {
                 setError(err)

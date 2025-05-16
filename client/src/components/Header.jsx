@@ -11,7 +11,6 @@ const Header = () => {
 
     function fakeLogOut() {
         localStorage.removeItem("isLoggedIn")
-        console.log('fakeLogOut');
     }
 
 

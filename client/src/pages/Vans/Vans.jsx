@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import useEffectCall from '../../hooks/useEffectCall.js';
 import { Link, useSearchParams } from 'react-router-dom';
 import { getVans } from '../../api.js';
 
@@ -36,8 +35,8 @@ const Vans = () => {
     const vanElements = displayedVans.map(van => (
 
         <div key={van.id} className="van-tile">
-            <Link to={van.id} state={{ search: `?${searchParams.toString()}`, type:typeFilter }} >
-                <img src={van.imageUrl} />
+            <Link to={van.id} state={{ search: `?${searchParams.toString()}`, type: typeFilter }} >
+                <img src={van.imageUrl} alt="van-img"/>
                 <div className="van-info">
                     <h3>{van.name}</h3>
                     <p>${van.price}<span>/day</span></p>
