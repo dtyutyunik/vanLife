@@ -85,19 +85,8 @@ REACT_APP_FIREBASE_APP_ID=your-app-id
 4. Start the development server:
     npm start
 5. Open the app in your browser at http://localhost:3000.
-vanLife/
-├── client/
-│   ├── public/
-│   │   └── screenshots/         # Moved images for README previews
-│   ├── src/
-│   │   ├── assets/              # Other static assets
-│   │   ├── components/          # Reusable components
-│   │   ├── pages/               # Route-level components
-│   │   ├── firebaseSetup/       # Firebase config
-│   │   ├── App.js               # Root component
-│   │   └── index.js             # Entry point
-├── README.md
-└── package.json
+<pre> vanLife/ ├── client/ │ ├── public/ │ │ └── screenshots/ # Images used in README │ ├── src/ │ │ ├── assets/ # Static images and assets │ │ ├── components/ # Shared UI components │ │ ├── pages/ # Route-based pages (e.g., Vans, Host) │ │ ├── firebaseSetup/ # Firebase config and initialization │ │ ├── App.js # Main app component │ │ └── index.js # React entry point ├── .env # Environment variables (not committed) ├── README.md └── package.json </pre>
+
 
 ## 🔒 Authentication
 This project uses Firebase Authentication to secure routes and manage user sessions. Protected routes ensure that only logged-in users can access sensitive areas like the host dashboard.
